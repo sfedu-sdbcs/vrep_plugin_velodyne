@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(vrep_plugin_velodyne)
 
+
+
+
 find_package(
-	catkin)
+catkin REQUIRED COMPONENTS
+  roscpp
+  std_msgs
+	)
 
 catkin_package(
                CATKIN_DEPENDS roscpp rosconsole std_msgs roslib
                DEPENDS roscpp rosconsole std_msgs roslib)
 
-include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(${catkin_INCLUDE_DIRS})
 
-link_directories("/opt/ros/groovy/lib")
-link_directories("/opt/ros/hydro/lib")
-link_directories("/opt/ros/indigo/lib")
-link_directories("/opt/ros/jade/lib")
+
+link_directories("/opt/ros/melodic/lib")
 
 add_library(
             v_repExtRosVelodyne

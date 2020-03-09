@@ -5,6 +5,3 @@ V-REP plugin that publishes a full revolution of points in PointCloud2 into ROS 
 The reason why the point cloud is published globally is because at every simulation step the points are converted to the origin frame in order to correct the mismatch due to the movement of the vehicle. You can modify the plugin or simply create a node that reads this point cloud and converts it to the base_link (or whatever the velodyne frame is) frame.
 
 
-TODO:
-- Parametrize frames
-- Publish local pointcloud

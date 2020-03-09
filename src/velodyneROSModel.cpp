@@ -27,7 +27,7 @@ CVelodyneROSModel::CVelodyneROSModel(const int visionSensorHandles[4],float freq
     _coloringDistances[1]=coloringDistances[1];
     lastScanAngle=0.0f;
     _velodyneHandle=_nextVelodyneHandle++;
-
+    // simGetObjectHandle("Robotnik_Summit_XL")
     _RANGE=0;
     _pubVelodyne =ROS_server::getPublisher();
 
@@ -118,8 +118,8 @@ bool CVelodyneROSModel::handle(float dt)
 
         float mainSensTr[12];
         float mainSensTrInv[12];
-        simGetObjectMatrix(_visionSensorHandles[0],-1,mainSensTr);
-        simGetObjectMatrix(_visionSensorHandles[0],-1,mainSensTrInv);
+        simGetObjectMatrix(_visionSensorHandles[0],simGetObjectHandle("Robotnik_Summit_XL"),mainSensTr);
+        simGetObjectMatrix(_visionSensorHandles[0],simGetObjectHandle("Robotnik_Summit_XL"),mainSensTrInv);
         simInvertMatrix(mainSensTrInv);
         if (_ptCloudHandle>=0)
             simModifyPointCloud(_ptCloudHandle,0,0,0);
@@ -153,7 +153,7 @@ bool CVelodyneROSModel::handle(float dt)
                     simGetObjectFloatParameter(_visionSensorHandles[i],1001,&farClippingPlane);
                     float RR=(farClippingPlane*0.99f)*(farClippingPlane*0.99f);
                     float m[12];
-                    simGetObjectMatrix(_visionSensorHandles[i],-1,m);
+                    simGetObjectMatrix(_visionSensorHandles[i],simGetObjectHandle("Robotnik_Summit_XL"),m);
                     if (dataSize[0]>1)
                     {
                         int off=dataSize[1];
